@@ -67,16 +67,17 @@ def maybe_determine_architecture():
     return architecture
 
 
-def ensure_exists(destination):
-    """ensure_exists wil check for the existence of <destination> and
-    create it if doesn't or raise an exception if not possible.
+def ensure_doesnt_exists(destination):
+    """ensure_doesnt_exists wil check for the existence of <destination> and
+    raise an exception if it finds it.
     """
     if exists(destination):
+        err = "{:s} exists but is not a directory"
         if isdir(destination):
-            return
-        raise InvalidPathError("{:s} exists but is not a directory".format(destination))
-    makedirs(destination)
-        
+            err = "{:s} directory exists and this process would overwrite it"
+        raise InvalidPathError(err.format(destination))
+    tgz = "{:s}.tar.gz".format(destination)
+
 
 def maybe_determine_debian():
     """maybe_determine_debian will try to find out if the current running
@@ -105,7 +106,7 @@ def debootstrap(destination, target_version=None, arch=None):
     check_debootstrap()
     if arch is None:
         arch = maybe_determine_architecture()
-    ensure_exists(destination)
+    ensure_doesnt_exists(destination)
     if target_version is None:
         target_version = maybe_determine_debian()
     debootstraper = Debootstrap(destination, target_version, arch)
@@ -124,7 +125,7 @@ if __name__ == "__main__":
     if len(options) == 0:
         print("you must provide at least a destination")
         print("usage:")
-        print("builder <destination> [version_shortname] [arch]")
+        print("builder <imagename> [version_shortname] [arch]")
+        print("note: .tar.gz extension will be added to imagename")
         sys.exit()
     debootstrap(*options)
-
