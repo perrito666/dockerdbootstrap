@@ -76,7 +76,6 @@ def ensure_doesnt_exists(destination):
         if isdir(destination):
             err = "{:s} directory exists and this process would overwrite it"
         raise InvalidPathError(err.format(destination))
-    tgz = "{:s}.tar.gz".format(destination)
 
 
 def maybe_determine_debian():

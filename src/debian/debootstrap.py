@@ -7,16 +7,19 @@ log = getLogger("debootstrap.debootstrap")
 
 DEBOOTSTRAP_COMMAND="debootstrap"
 
-class DebootstrapRuntimeError(Exception):
+class DebootstrapRuntimeError(BaseException):
     def __init__(self, result, output):
         self._result = result
-        self._output = output
+        self.message = output
 
     def result(self):
         return self._result
 
-    def details(self):
-        return self._ouput
+    def __unicode__(self):
+        return self.message
+
+    def __str__(self):
+        return self.message
 
 def print_ticks(d):
     # some educated guessing should be done regarding the encoding.
