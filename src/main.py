@@ -7,6 +7,7 @@ from logging import basicConfig, DEBUG
 
 from debian.builder import debootstrap
 from dockerwrap.builder import DockerBuilder
+from dockerwrap.checker import debian_docker_check
 
 def parse_args():
     args = sys.argv[1:]
@@ -26,6 +27,8 @@ def main():
         # do this by running hello, checking it fails and then installing
         # and committing the changes.
         print("{:s} image was added to docker".format(img_name))
+        debian_docker_check(img_name)
+        print("the image works correctly")
 
 
 if __name__ == "__main__":

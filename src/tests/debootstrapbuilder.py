@@ -3,8 +3,8 @@ from tempfile import mkdtemp
 from shutil import rmtree
 from os.path import join
 from importlib import import_module
-from debian.builder import (ensure_doesnt_exists, InvalidPathError)
-from debian.debootstrap import DebootstrapRuntimeError
+from ..debian.builder import (ensure_doesnt_exists, InvalidPathError)
+from ..debian.debootstrap import DebootstrapRuntimeError
 
 LATEST_DEBIAN="jessie"
 

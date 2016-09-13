@@ -125,6 +125,5 @@ if __name__ == "__main__":
         print("you must provide at least a destination")
         print("usage:")
         print("builder <imagename> [version_shortname] [arch]")
-        print("note: .tar.gz extension will be added to imagename")
         sys.exit()
     debootstrap(*options)

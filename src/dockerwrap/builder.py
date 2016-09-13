@@ -38,5 +38,11 @@ class DockerBuilder:
 
 if __name__=="__main__":
     options = sys.argv[1:]
+    if len(options) < 2:
+        print("you must provide a folder with the image contents "
+            "and an image name")
+        print("usage:")
+        print("builder.py <image folder> <image name>")
+        sys.exit()
     db = DockerBuilder(*options)
     db.run()
