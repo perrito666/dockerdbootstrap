@@ -26,8 +26,12 @@ might be replaced such as docker images or debian as a distro.
 To run the main script in this project you will need:
 * python => 3.4 (with the requirements.txt packages installed)
 * debootstrap
-* docker
+* docker (on ubuntu the package is called docker.io)
 * sudo or equivalent permissions (debootstrap requires it for chrooting)
+* On certain versions of ubuntu (such as aws), you might need to install:
+```
+debian-archive-keyring debian-keyring debian-ports-archive-keyring
+```
 
 ### Running ###
 The tools are bundled as a script that should run in autonomous way and output
